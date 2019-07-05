@@ -89,7 +89,7 @@ def extract_func(burn_seconds = 5, input_seconds = 10, output_seconds = None, me
         itime1  = int(input_seconds  * measure_rate + iburn  if input_seconds  is not None else -1)
         itime2  = int(output_seconds * measure_rate + itime1 if output_seconds is not None else -1)
         x       = data[:, iburn:itime1 , : ]
-        y       = data[:, itime1:itime2, : ] if input_seconds is not None else None
+        y       = data[:, itime1:itime2, : ] if input_seconds is not None and len(y) > 0 else None
         
         x_normalization = np.max(np.abs(x), axis = 1)
         y_normalization = np.max(np.abs(y), axis = 1) if input_seconds is not None else None
